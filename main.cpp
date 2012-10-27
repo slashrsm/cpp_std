@@ -12,7 +12,15 @@
 #include "linked_list.h"
 using namespace std;
 
+void test_ll();
+
 int main() {
+    test_ll();
+
+    return 1;
+}
+
+void test_ll() {
     LinkedList list;
     list.append(rand());
     list.append(rand());
@@ -24,6 +32,4 @@ int main() {
 
     cout << list.get(0) << endl;
     cout << list.get(1) << endl;
-
-    return 1;
 }
