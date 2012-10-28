@@ -26,7 +26,12 @@ class LinkedList {
         ~LinkedList();
         int get(int);
         void append(int);
+        void prepend(int);
+        void insert(int, int);
         void remove(int);
+        void removeFirst();
+        void removeLast();
+        int size();
 };
 
 #endif /* LINKED_LIST_H_ */

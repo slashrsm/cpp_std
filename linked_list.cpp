@@ -17,7 +17,7 @@ LLNode::~LLNode() {
 }
 
 LinkedList::LinkedList() {
-    this->first = 0;
+    this->first = new LLNode();
 }
 
 LinkedList::~LinkedList() {
@@ -28,11 +28,6 @@ LinkedList::~LinkedList() {
  * Finds last element in linked list.
  */
 LLNode* LinkedList::getLastElem() {
-    // Return null if we have 0 elements in LL.
-    if (this->first == 0) {
-        return 0;
-    }
-
     // Find last element.
     LLNode* ret = this->first;
     while (ret->next != 0) {
@@ -43,15 +38,15 @@ LLNode* LinkedList::getLastElem() {
 }
 
 /**
- * Finds last element in linked list.
+ * Finds an element in linked list.
  */
 LLNode* LinkedList::getElem(int pos) {
-    LLNode* elem = this->first;
-    if (elem == 0) {
-        return 0;
+    if (pos == -1) {
+        return this->first;
     }
 
-    for (int i=0; i < pos; i++) {
+    LLNode* elem = this->first;
+    for (int i=0; i <= pos; i++) {
         elem = elem->next;
 
         if (elem == 0) {
@@ -67,27 +62,41 @@ LLNode* LinkedList::getElem(int pos) {
  */
 void LinkedList::append(int data) {
     LLNode* last = this->getLastElem();
-    if (last != 0) {
-        last->next = new LLNode();
-        last->next->data = data;
-    }
-    else {
-        this->first = new LLNode();
-        this->first->data = data;
-    }
+    last->next = new LLNode();
+    last->next->data = data;
 }
 
+/**
+ * Prepend an element to a linked list.
+ */
+void LinkedList::prepend(int data) {
+    LLNode* first = this->first;
+    LLNode* old_next = first->next;
+    first->next = new LLNode();
+    first->next->data = data;
+    first->next->next = old_next;
+}
+
+void LinkedList::insert(int pos, int data) {
+    if (pos >= this->size()) {
+        this->append(data);
+        return;
+    }
+
+    LLNode* elem = this->getElem(pos-1);
+    LLNode* old_next = elem->next;
+    elem->next = new LLNode();
+    elem->next->data = data;
+    elem->next->next = old_next;
+}
 
 /**
  * Returns element on position pos.
  */
 int LinkedList::get(int pos) {
     LLNode* elem = this->first;
-    if (elem == 0) {
-        return 0;
-    }
 
-    for (int i=0; i < pos; i++) {
+    for (int i=0; i <= pos; i++) {
         elem = elem->next;
 
         if (elem == 0) {
@@ -105,4 +114,24 @@ void LinkedList::remove(int pos) {
         delete successor->next;
         successor->next = new_successor;
     }
+}
+
+void LinkedList::removeFirst() {
+    this->remove(0);
+}
+
+void LinkedList::removeLast() {
+    this->remove(this->size()-1);
+}
+
+int LinkedList::size() {
+    int count = 0;
+    LLNode* elem = this->first;
+
+    while (elem->next != 0) {
+        count++;
+        elem = elem->next;
+    }
+
+    return count;
 }
