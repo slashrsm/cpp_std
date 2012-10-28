@@ -23,7 +23,7 @@ int main() {
 void test_ll() {
     cout << "Start LinkedList test." << endl;
 
-    LinkedList list;
+    LinkedList <int> list;
     list.append(rand());
     list.append(rand());
 

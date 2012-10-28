@@ -8,30 +8,34 @@
 #ifndef LINKED_LIST_H_
 #define LINKED_LIST_H_
 
+template <typename T>
 class LLNode {
     public:
-        int data;
-        LLNode* next;
+        T data;
+        LLNode<T>* next;
     public:
         LLNode();
         ~LLNode();
 };
 
+template <typename T>
 class LinkedList {
-        LLNode* first;
-        LLNode* getLastElem();
-        LLNode* getElem(int);
+        LLNode<T>* first;
+        LLNode<T>* getLastElem();
+        LLNode<T>* getElem(int);
     public:
         LinkedList();
         ~LinkedList();
         int get(int);
-        void append(int);
-        void prepend(int);
-        void insert(int, int);
+        void append(T);
+        void prepend(T);
+        void insert(int, T);
         void remove(int);
         void removeFirst();
         void removeLast();
         int size();
 };
+
+#include "linked_list.hpp"
 
 #endif /* LINKED_LIST_H_ */
