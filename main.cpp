@@ -7,17 +7,21 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include "sorts.h"
 #include "standard.h"
 #include "linked_list.h"
+#include "hash_table.h"
 using namespace std;
 
 void test_ll();
+void test_ht();
 
 int main() {
-    test_ll();
+    //test_ll();
+    test_ht();
 
-    return 1;
+    return 0;
 }
 
 void test_ll() {
@@ -62,4 +66,21 @@ void test_ll() {
     cout << "Count: " <<  list.size() << endl;
 
     cout << "End LinkedList test." << endl;
+}
+
+void test_ht() {
+    cout << "Start HashTable test." << endl;
+
+    HashTable list;
+    list.insert(string("fancykey"), rand());
+    list.insert(string("evenfancierkey"), rand());
+
+    int test = list.get("fancykey");
+    int test1 = list.get("evenfancierkey");
+
+    cout << "First element: " << list.get("fancykey") << endl;
+    cout << "Second element: " <<  list.get("evenfancierkey") << endl;
+    cout << "Nonexistent element: " <<  list.get("nogoelement") << endl;
+
+    cout << "End HashTable test." << endl;
 }

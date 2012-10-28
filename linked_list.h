@@ -8,6 +8,9 @@
 #ifndef LINKED_LIST_H_
 #define LINKED_LIST_H_
 
+/**
+ * Single node of a linked list. Stores data and pointer to next node.
+ */
 template <typename T>
 class LLNode {
     public:
@@ -18,6 +21,10 @@ class LLNode {
         ~LLNode();
 };
 
+/**
+ * Linked list implementation. Stores pointer to list head pseudo element, that
+ * will point to first actual element of a list + some usefull functions.
+ */
 template <typename T>
 class LinkedList {
         LLNode<T>* first;
@@ -26,7 +33,7 @@ class LinkedList {
     public:
         LinkedList();
         ~LinkedList();
-        int get(int);
+        T get(int);
         void append(T);
         void prepend(T);
         void insert(int, T);
